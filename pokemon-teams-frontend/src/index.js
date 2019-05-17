@@ -75,7 +75,7 @@ document.addEventListener("click", function(e){
 document.addEventListener("click", function(e){
 
     if (e.target.classList[0] === "birth"){
-        debugger
+        // debugger
         console.log("OW!")
         fetch(POKEMONS_URL,{
             method: "POST",
@@ -86,7 +86,8 @@ document.addEventListener("click", function(e){
         .then((obj) => {
             var pokemonNickName = obj.nickname;
             var pokemonSpecies = obj.species;
-            var pokemonOwner = obj.trainer_id;
+            var pokemonOwner = obj.trainer_id - 1;
+            debugger
             var pokemonId = obj.id;
             var ul = document.querySelectorAll('ul')[pokemonOwner]
             var li = document.createElement('li')
@@ -96,7 +97,7 @@ document.addEventListener("click", function(e){
             var pokeKiller = document.createElement('button')
             li.appendChild(pokeKiller)
             pokeKiller.innerText = "Release Pokemon"
-            pokeKiller.dataset.pokemonId = mons.id
+            pokeKiller.dataset.pokemonId = obj.id
             pokeKiller.classList.add("release")
 
         } )
